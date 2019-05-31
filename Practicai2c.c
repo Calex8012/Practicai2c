@@ -9,6 +9,11 @@
 #define DIRECCION_INICIO_LECTURA_DATOS 0X00
 #define ACK 0
 
+void rtc_get_time(byte &hr, byte &min, byte &sec, byte &dia, byte &mes, byte &year, &impresion);
+int hr,sec,min,year,mes,dia;
+int BCDaBIN(byte bcd);
+int impresion=0;
+
 #define __DEBUG_SERIAL__ //Si comentas esta linea se deshabilita el debug por serial y el PIN_C6 puede ser usado en forma digital I/O
 
 #ifdef __DEBUG_SERIAL__
