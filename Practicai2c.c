@@ -18,10 +18,6 @@
 #endif
 
 void main (void){
-   setup_oscillator(OSC_16MHZ);
-#ifdef __DEBUG_SERIAL__ //Deberiamos de proteger nuestras depuraciones de esta forma o usar una macro ya protegida.
-   printf("Hola Mundo\n");//Puedes usar putc o printf. Revisa la documentación de CCS para ver que mas puedes hacer.
-#endif
    while(1){
       
    }
