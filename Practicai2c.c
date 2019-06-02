@@ -24,6 +24,30 @@ int impresion=0;
 
 void main (void){
    while(1){
-      
+       if(impresion==1)
+      {
+         printf("Hora %u,Minuto %u,Segundos %u",hr,min,sec);
+         impresion=0;
+      }
    }
+}
+int BCDaBIN(BYTE bcd)
+{
+   int varia;
+   varia=bcd;
+   varia>>=1;
+   varia &= 0x78;
+   return (varia + (varia>>2) + (bcd & 0x0f));
+}
+
+void rtc_get_time(byte &hr, byte &min, byte &sec, byte &dia, byte &mes, byte &year, &impresion){
+   i2c_start();
+   i2c_write(RTC_DS1307_WRITE_ADDRESS);
+   i2c_write(DIRECCION_INICIO_LECTURA_DATOS);
+   i2c_start();
+   i2c_write(RTC_DS1307_READ_ADDRESS);
+   sec=i2c_read();
+   min=i2c_read();
+   hr=i2c_read();
+   i2c_stop();
 }
