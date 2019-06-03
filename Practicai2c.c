@@ -46,8 +46,12 @@ void rtc_get_time(byte &hr, byte &min, byte &sec, byte &dia, byte &mes, byte &ye
    i2c_write(DIRECCION_INICIO_LECTURA_DATOS);
    i2c_start();
    i2c_write(RTC_DS1307_READ_ADDRESS);
-   sec=i2c_read();
-   min=i2c_read();
-   hr=i2c_read();
+   sec=BCDaBIN(i2c_read()&0x7F);
+   min=BCDaBIN(i2c_read()&0x7F);
+   hr=BCDaBIN(i2c_read()&0x3F);
+   dia=BCDaBIN(i2c_read()&0x07);
+   mes=BCDaBIN(i2c_read()&0x1F);
+   year=BCDaBIN(i2c_read(ACK)&0xF1);
    i2c_stop();
+   impresion=1;
 }
